@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Movimentação</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Movimentação Correntista</h1>
+		</div>
+
+		<form class="form-inline" method="POST" th:object="${movimentacao}"
+			th:action="@{/movimentacao}" style="margin: 20px 0">
+			<div class="form-group">
+				<select class="form-control" th:field="*{correntista}">
+					<option th:each="correntista : ${correntistas}"
+						th:field="*{correntista}" th:value="${correntista.id}"
+						th:text="${correntista.nome}">{{correntista.nome}}</option>
+				
+				</select> 
+				<select class="form-control" th:field="*{tipoMovimentacao}">
+					<option th:field="*{tipoMovimentacao}" th:value="D">Debito</option>
+					<option th:field="*{tipoMovimentacao}" th:value="C">Credito</option>
+				</select> 
+				
+				<input type="text" class="form-control"
+					placeholder="Saldo Financeiro" th:field="*{valor}" />
+			</div>
+
+			<div class="panel-footer">
+				<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+				<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+			</div>
+		</form>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Cód.</th>
+					<th>Nome</th>
+					<th>Valor</th>
+					<th>Tipo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="mov : ${listMovimentacao}">
+					<td th:text="${mov.id}"></td>
+					<td th:text="${mov.correntista.nome}"></td>
+					<td th:text="${mov.valor}"></td>
+					<td th:text="${mov.tipoMovimentacao}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

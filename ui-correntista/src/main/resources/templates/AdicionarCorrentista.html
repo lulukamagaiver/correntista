@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Correntista</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Adicionar Correntistas</h1>
+		</div>
+
+		<form class="form-inline" method="POST" th:object="${correntista}"
+			th:action="@{/salvar}" style="margin: 20px 0">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="ID"
+					th:field="*{id}" readonly />
+				<input type="text"
+					class="form-control" placeholder="Nome" th:field="*{nome}" /> <input
+					type="text" class="form-control" placeholder="Saldo Financeiro"
+					th:field="*{saldoFinanceiro}" /> 
+			</div>
+
+			<div class="panel-heading">
+				<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+				<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

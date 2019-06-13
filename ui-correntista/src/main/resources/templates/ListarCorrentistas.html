@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Correntistas</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de Correntistas</h1>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Saldo Financeiro</th>
+					<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="correntista: ${correntistas}">
+					<td th:text="${correntista.nome}"></td>
+					<td th:text="${correntista.saldoFinanceiro}"></td>
+					<td>
+						<a type="button" class="btn btn-warning"
+							th:href="@{/editar/{id}(id=${correntista.id})}">Editar</a>
+						<a type="button" class="btn btn-danger"
+							th:href="@{/deletar/{id}(id=${correntista.id})}">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="panel-footer">
+			<a class="btn btn-sm btn-success" th:href="@{/adicionar/}">Adicionar</a>
+			<a class="btn btn-sm btn-success" th:href="@{/movimentacao/}">Movimentação</a>
+		</div>
+	</div>
+</body>
+
+
+</html>
